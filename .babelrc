@@ -2,5 +2,10 @@
     "presets": [
         "@babel/env", 
         "@babel/preset-react"
+    ], 
+    "plugins": [ 
+        // sirve para que babel pueda entender los componentes de clase
+        "@babel/plugin-proposal-class-properties"  
+        
     ]
 }
