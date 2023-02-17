@@ -1,8 +1,8 @@
 import React from "react"; 
 
-export default function Form () { 
+export default function Form ({handleSubmit}) { 
     return(<>  
-    <form> 
+    <form onSubmit={handleSubmit}> 
         <div className="row m-0 ">  
             <div className="col-5">   
                 <div className="form-group"> 
