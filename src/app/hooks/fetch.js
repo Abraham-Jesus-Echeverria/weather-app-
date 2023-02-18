@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 
 
-export default function useFetch() {
+export default function useFetch(initialState) {
   // variables de estado para guardar los datos y el mensaje de error
-  const [data, setData] = useState({
-    temperatura: 0, 
-    humedad: 0, 
-    presion: 0, 
-    tempMax: 0, 
-    tempMin: 0,
-    imageCode: 0,
-  });
+  const [data, setData] = useState(initialState);
   const [error, setError] = useState();
   // funcion que se ejecuta para realizar la peticion
   const peticion = async (url) => {
