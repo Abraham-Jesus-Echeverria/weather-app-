@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { keys } from ".././keys"
+
 
 export default function useFetch() {
   // variables de estado para guardar los datos y el mensaje de error
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    temperatura: 0, 
+    humedad: 0, 
+    presion: 0, 
+    tempMax: 0, 
+    tempMin: 0,
+    imageCode: 0,
+  });
   const [error, setError] = useState();
   // funcion que se ejecuta para realizar la peticion
-  const peticion = async (city, contry) => {
+  const peticion = async (url) => {
     try {
       // realizando la peticion get
-      let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${contry}&appid=${keys.WEATHER_KEY}&units=metric`);
-      let res = await response.json();
+      let response = await fetch(url);
+      let res = await response.json(); 
+      console.log(res); 
 
       // condicional para evaluar que la informacion llegue
       if (!response.ok) {
@@ -27,8 +35,9 @@ export default function useFetch() {
         humedad: res.main.humidity, 
         presion: res.main.pressure, 
         tempMax: res.main.temp_max, 
-        tempMin: res.main.temp_min
-      }); 
+        tempMin: res.main.temp_min,
+        imageCode: res.weather[0].icon
+      });  
     } catch (err) {
       // acutalizando estado para crear un mensaje de error personalizado
       setError(`${err.status || "Error!"} ${err.statusText || "lo sentimos ha ocurrido un error" }`);
