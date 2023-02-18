@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef }from "react";  
 import Form from "./components/formulario"; 
-import { key } from "./keys";
+import { key } from "../../keys";
 import ClimaInfo from "./components/climaInfo"; 
 import useFetch from "./hooks/fetch";  
 import useGeolocation from "./hooks/GetGeolocation"; 
