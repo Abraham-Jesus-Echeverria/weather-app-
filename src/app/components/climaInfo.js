@@ -16,7 +16,7 @@ export default function ClimaInfo ({data}) {
         <div className="row col-12 bg-success m-0">{`presion: ${data.presion}`}</div> 
         <div className="row col-12 bg-success m-0">{`temperatura maxima: ${data.tempMax}`}</div>
         <div className="row col-12 bg-success m-0">{`temperatura minima: ${data.tempMin}`}</div> 
-        <img src={`http://openweathermap.org/img/wn/${data.imageCode}@4x.png`} alt="" />
+        <img src={`http://openweathermap.org/img/wn/${data.imageCode}@4x.png`} alt="clima-image" />
         </>
     ); 
 }
