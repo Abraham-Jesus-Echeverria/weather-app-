@@ -11,8 +11,11 @@ import Louder from "./components/louder";
 export default function App () {    
     let initialStateDataWeater = {
       temperatura: 0, 
-    }
-    const {data, error, peticion, isLoading} = useFetch(initialStateDataWeater);  
+    } 
+    const getDataWeatherToday = useFetch(initialStateDataWeater);
+    const getDataWeatherTodayForm = useFetch(initialStateDataWeater); 
+    const getDataWeatherFor4days = useFetch(initialStateDataWeater); 
+
     const {getCoordinates, stateErrorGeolocation} = useGeolocation(); 
     const refLouder = useRef(); 
 
@@ -21,9 +24,11 @@ export default function App () {
       try{ 
         const getLocation = await getCoordinates(); 
         let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=es&appid=${key.WEATHER_KEY}&units=metric`; 
-        await peticion(Url_coordLocation); 
+        await getDataWeatherToday.peticion(Url_coordLocation); 
         refLouder.current.classList.add("d-none");
-        
+        // se genera la url para obtener datos de los proximos 4 dias
+        let URL_forecastOf4Days = `https://api.openweathermap.org/data/2.5/forecast?lat=20.969981326249574&lon=-89.5719988399354&appid=9969b40cd1f3432e9ff32f7cb0b6778a`;  
+        getDataWeatherFor4days.peticion(URL_forecastOf4Days);   
       }catch (err){ 
         refLouder.current.classList.add("d-none"); 
       }
@@ -38,12 +43,13 @@ export default function App () {
     
     const handleSubmit = (e) => {
       e.preventDefault(); 
-      console.log("enviando..."); 
-      // const { cityName, contryName } = e.target; 
-      // let Url_form = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.value},${contryName.value}&appid=${keys.WEATHER_KEY}&units=metric`;
-      // peticion(Url_form);   
-      // cityName.value = "" ; 
-      // contryName.value = "" ;  
+      // console.log("enviando..."); 
+      const { cityName, contryName } = e.target;  
+      // se genera url para obtener datos a traves del formulario.
+      let Url_form = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.value},${contryName.value}&appid=${key.WEATHER_KEY}&units=metric`;
+      getDataWeatherTodayForm.peticion(Url_form);   
+      cityName.value = "" ; 
+      contryName.value = "" ;  
     }; 
 
     return(<>  
@@ -51,7 +57,9 @@ export default function App () {
     <div className="container-fluid p-0 bg-danger">
         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} />}   
         <Louder refLouder={refLouder}/> 
-        <ClimaInfo data={data} isLoading={isLoading} /> 
+        {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}
+        <ClimaInfo data={stateErrorGeolocation? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} /> 
+
     </div> 
  
     </>)

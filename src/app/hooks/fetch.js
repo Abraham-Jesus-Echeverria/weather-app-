@@ -11,7 +11,7 @@ export default function useFetch(initialState) {
     try {
       // realizando la peticion get
       let response = await fetch(url);
-      let res = await response.json();  
+      let res = await response.json();   
 
       // condicional para evaluar que la informacion llegue
       if (!response.ok) {
@@ -23,14 +23,12 @@ export default function useFetch(initialState) {
       } 
       // actualizando la variable de estado para guardar los datos
       setData(res); 
-      console.log(res); 
       setIsLoading(false); 
     } catch (err) {
       // acutalizando estado para crear un mensaje de error personalizado
       alert(`${err.status || "Error!"} ${err.statusText || "lo sentimos ha ocurrido un error intentalo mas tarde"}`); 
       setError(true) 
       setIsLoading(false); 
-      
     }
   };
   // retornando objeto con el valor de los datos el error y la funcion que realiza la peticion
