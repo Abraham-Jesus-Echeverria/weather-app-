@@ -4,7 +4,8 @@ import React, { useState } from "react";
 export default function useFetch(initialState) {
   // variables de estado para guardar los datos y el mensaje de error
   const [data, setData] = useState(initialState);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(true);
+  const [isLoading , setIsLoading] = useState(true);  
   // funcion que se ejecuta para realizar la peticion
   const peticion = async (url) => {
     try {
@@ -20,23 +21,15 @@ export default function useFetch(initialState) {
         };
         throw customeError;
       } 
-
-      console.log(res); 
-
       // actualizando la variable de estado para guardar los datos
-      setData({ 
-        temperatura: res.main.temp, 
-        humedad: res.main.humidity, 
-        presion: res.main.pressure, 
-        tempMax: res.main.temp_max, 
-        tempMin: res.main.temp_min,
-        imageCode: res.weather[0].icon
-      }); 
-      setError(false);  
+      setData(res); 
+      console.log(res); 
+      setIsLoading(false); 
     } catch (err) {
       // acutalizando estado para crear un mensaje de error personalizado
       alert(`${err.status || "Error!"} ${err.statusText || "lo sentimos ha ocurrido un error intentalo mas tarde"}`); 
-      setError(true)
+      setError(true) 
+      setIsLoading(false); 
       
     }
   };
@@ -45,5 +38,6 @@ export default function useFetch(initialState) {
     data,
     error,
     peticion,
+    isLoading
   };
 }

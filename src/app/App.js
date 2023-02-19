@@ -11,26 +11,19 @@ import Louder from "./components/louder";
 export default function App () {    
     let initialStateDataWeater = {
       temperatura: 0, 
-      humedad: 0, 
-      presion: 0, 
-      tempMax: 0, 
-      tempMin: 0,
-      imageCode: 0,
     }
-    const {data, error, peticion,} = useFetch(initialStateDataWeater);  
+    const {data, error, peticion, isLoading} = useFetch(initialStateDataWeater);  
     const {getCoordinates, stateErrorGeolocation} = useGeolocation(); 
     const refLouder = useRef(); 
-
-
 
     const getDataLocation = async () =>{
       // esperamos la respuesta de la promesa para poder generar nuestra url y hacer la peticion 
       try{ 
         const getLocation = await getCoordinates(); 
         let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=es&appid=${key.WEATHER_KEY}&units=metric`; 
-      // esperamos que realize la peticion para eliminar el louder
-        await peticion(Url_coordLocation);  
+        await peticion(Url_coordLocation); 
         refLouder.current.classList.add("d-none");
+        
       }catch (err){ 
         refLouder.current.classList.add("d-none"); 
       }
@@ -58,7 +51,7 @@ export default function App () {
     <div className="container-fluid p-0 bg-danger">
         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} />}   
         <Louder refLouder={refLouder}/> 
-        <ClimaInfo data={data} /> 
+        <ClimaInfo data={data} isLoading={isLoading} /> 
     </div> 
  
     </>)
