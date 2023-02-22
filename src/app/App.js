@@ -5,7 +5,11 @@ import ClimaInfo from "./components/climaInfo";
 import useFetch from "./hooks/fetch";  
 import useGeolocation from "./hooks/GetGeolocation"; 
 import Louder from "./components/louder";
+// import backgrounImage from "../assets/images/lluvia.jpg";
 
+// const stylesBackground = { 
+//   background: `url(${backgroundImage})`
+// }
 
 
 export default function App () {    
@@ -15,7 +19,6 @@ export default function App () {
     const getDataWeatherToday = useFetch(initialStateDataWeater);
     const getDataWeatherTodayForm = useFetch(initialStateDataWeater); 
     const getDataWeatherFor4days = useFetch(initialStateDataWeater); 
-
     const {getCoordinates, stateErrorGeolocation} = useGeolocation(); 
     const refLouder = useRef(); 
 
@@ -54,7 +57,7 @@ export default function App () {
 
     return(<>  
     <h2>Clima XD</h2>    
-    <div className="container-fluid p-0 bg-danger">
+    <div className="container-fluid p-0">
         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} />}   
         <Louder refLouder={refLouder}/> 
         {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}

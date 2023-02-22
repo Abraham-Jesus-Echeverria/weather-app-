@@ -1,9 +1,11 @@
 import React, {useEffect} from "react";
 
 export default function ClimaInfo ({data, isLoading}) {  
+  console.log(data); 
   let dataWeather = data.main;    
     return(
         <>  
+        <p>{data.name}</p>
          <div className="row col-12 bg-success m-0">{`temperatura: ${isLoading? 0 : dataWeather.temp}`}</div>
          <div className="row col-12 bg-success m-0">{`humedad: ${isLoading? 0 : dataWeather.humidity}`}</div>
          <div className="row col-12 bg-success m-0">{`presion: ${isLoading? 0 : dataWeather.pressure}`}</div> 
