@@ -21,14 +21,15 @@ export default function useFetch(initialState) {
         };
         throw customeError;
       } 
-      // actualizando la variable de estado para guardar los datos
+      // actualizando la variable de estado para guardar los datos 
+      console.log(res.weather[0].description);
       setData(res); 
       setIsLoading(false); 
     } catch (err) {
       // acutalizando estado para crear un mensaje de error personalizado
       alert(`${err.status || "Error!"} ${err.statusText || "lo sentimos ha ocurrido un error intentalo mas tarde"}`); 
       setError(true) 
-      setIsLoading(false); 
+      setIsLoading(true); 
     }
   };
   // retornando objeto con el valor de los datos el error y la funcion que realiza la peticion

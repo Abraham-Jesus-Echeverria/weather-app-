@@ -1,5 +1,5 @@
 import React from "react"; 
 
-const ContainerInfo = ({children}) => <div className="row col-12 bg-success m-0 h-auto">{children}</div>
+const ContainerInfo = ({children, classNameContainerInfo}) => <div className={`row m-0 h-auto ${classNameContainerInfo}`}>{children}</div>
 
 export default ContainerInfo; 

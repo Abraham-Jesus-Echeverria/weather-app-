@@ -10,7 +10,8 @@ import BackgroundImage from "../assets/images/lluvia.jpg"
 
 
 let styleBackground = { 
-  background: `url(${BackgroundImage})`
+  background: `url(${BackgroundImage})`,  
+  backgroundSize: "100% 100%" 
 }
 
 
@@ -34,8 +35,8 @@ export default function App () {
         await getDataWeatherToday.peticion(Url_coordLocation); 
         refLouder.current.classList.add("d-none");
         // se genera la url para obtener datos de los proximos 4 dias
-        let URL_forecastOf4Days = `https://api.openweathermap.org/data/2.5/forecast?lat=20.969981326249574&lon=-89.5719988399354&appid=9969b40cd1f3432e9ff32f7cb0b6778a`;  
-        getDataWeatherFor4days.peticion(URL_forecastOf4Days);   
+        // let URL_forecastOf4Days = `https://api.openweathermap.org/data/2.5/forecast?lat=20.969981326249574&lon=-89.5719988399354&appid=9969b40cd1f3432e9ff32f7cb0b6778a`;  
+        // getDataWeatherFor4days.peticion(URL_forecastOf4Days);   
       }catch (err){ 
         refLouder.current.classList.add("d-none"); 
       }
@@ -61,10 +62,10 @@ export default function App () {
 
     return(<>     
     <div className="container-fluid p-0 backgroundStyle d-flex flex-column align-items-center" style={styleBackground}> 
-    <Louder refLouder={refLouder} classNameLouder={"louderStyles position-absolute w-100 d-flex justify-content-center align-items-center"}/> 
-      <div className="bg-success col-9"> 
-        <h2 className="text-center">Clima XD</h2> 
-         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} classNameForm={"col-11 mb-4"} />}    
+    <Louder refLouder={refLouder} classNameLouder={"louderStyles background-opacity position-absolute w-100 d-flex justify-content-center align-items-center"}/> 
+      <div className="background-opacity col-md-9 col-11 text-white vh-100"> 
+        <h1 className="text-center text-white my-4">Weather Forecast</h1>  
+         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} classNameForm={"col-12 mb-4"} />}    
           <div className="text-white"> 
              {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}
              <ClimaInfo data={stateErrorGeolocation? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} /> 
