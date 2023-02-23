@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef }from "react";  
 import Form from "./components/formulario"; 
 import { key } from "../../keys";
+import "./App.css"; 
 import ClimaInfo from "./components/climaInfo"; 
 import useFetch from "./hooks/fetch";  
 import useGeolocation from "./hooks/GetGeolocation"; 
-import Louder from "./components/louder";
-// import backgrounImage from "../assets/images/lluvia.jpg";
+import Louder from "./components/louder";  
+import BackgroundImage from "../assets/images/lluvia.jpg"
 
-// const stylesBackground = { 
-//   background: `url(${backgroundImage})`
-// }
+
+let styleBackground = { 
+  background: `url(${BackgroundImage})`
+}
+
 
 
 export default function App () {    
@@ -19,6 +22,7 @@ export default function App () {
     const getDataWeatherToday = useFetch(initialStateDataWeater);
     const getDataWeatherTodayForm = useFetch(initialStateDataWeater); 
     const getDataWeatherFor4days = useFetch(initialStateDataWeater); 
+
     const {getCoordinates, stateErrorGeolocation} = useGeolocation(); 
     const refLouder = useRef(); 
 
@@ -55,14 +59,17 @@ export default function App () {
       contryName.value = "" ;  
     }; 
 
-    return(<>  
-    <h2>Clima XD</h2>    
-    <div className="container-fluid p-0">
-        { stateErrorGeolocation && <Form handleSubmit={handleSubmit} />}   
-        <Louder refLouder={refLouder}/> 
-        {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}
-        <ClimaInfo data={stateErrorGeolocation? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} /> 
-
+    return(<>     
+    <div className="container-fluid p-0 backgroundStyle d-flex flex-column align-items-center" style={styleBackground}> 
+    <Louder refLouder={refLouder} classNameLouder={"louderStyles position-absolute w-100 d-flex justify-content-center align-items-center"}/> 
+      <div className="bg-success col-9"> 
+        <h2 className="text-center">Clima XD</h2> 
+         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} classNameForm={"col-11 mb-4"} />}    
+          <div className="text-white"> 
+             {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}
+             <ClimaInfo data={stateErrorGeolocation? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} /> 
+          </div> 
+      </div>
     </div> 
  
     </>)
