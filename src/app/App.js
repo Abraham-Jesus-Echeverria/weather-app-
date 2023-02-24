@@ -7,6 +7,7 @@ import useFetch from "./hooks/fetch";
 import useGeolocation from "./hooks/GetGeolocation"; 
 import Louder from "./components/louder";  
 import BackgroundImage from "../assets/images/lluvia.jpg"
+import ClimaInfo5day from "./components/climaInfo5days";
 
 
 let styleBackground = { 
@@ -30,12 +31,12 @@ export default function App () {
     const getDataLocation = async () =>{
       // esperamos la respuesta de la promesa para poder generar nuestra url y hacer la peticion 
       try{ 
-        const getLocation = await getCoordinates(); 
-        let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=es&appid=${key.WEATHER_KEY}&units=metric`; 
-        await getDataWeatherToday.peticion(Url_coordLocation); 
+        // const getLocation = await getCoordinates(); 
+        // let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${key.WEATHER_KEY}&units=metric`; 
+        // await getDataWeatherToday.peticion(Url_coordLocation); 
         refLouder.current.classList.add("d-none");
         // se genera la url para obtener datos de los proximos 4 dias
-        // let URL_forecastOf4Days = `https://api.openweathermap.org/data/2.5/forecast?lat=20.969981326249574&lon=-89.5719988399354&appid=9969b40cd1f3432e9ff32f7cb0b6778a`;  
+        // let URL_forecastOf4Days = `https://api.openweathermap.org/data/2.5/forecast?lat=20.969981326249574&lon=-89.5719988399354&appid=9969b40cd1f3432e9ff32f7cb0b6778a&units=metric`;  
         // getDataWeatherFor4days.peticion(URL_forecastOf4Days);   
       }catch (err){ 
         refLouder.current.classList.add("d-none"); 
@@ -61,15 +62,15 @@ export default function App () {
     }; 
 
     return(<>     
-    <div className="container-fluid p-0 backgroundStyle d-flex flex-column align-items-center" style={styleBackground}> 
+    <div className="container-fluid p-0 backgroundStyle d-flex flex-column align-items-center h-auto" style={styleBackground}> 
     <Louder refLouder={refLouder} classNameLouder={"louderStyles background-opacity position-absolute w-100 d-flex justify-content-center align-items-center"}/> 
-      <div className="background-opacity col-md-9 col-11 text-white vh-100"> 
-        <h1 className="text-center text-white my-4">Weather Forecast</h1>  
-         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} classNameForm={"col-12 mb-4"} />}    
+      <div className="background-opacity col-12 text-white pb-5"> 
+        <h1 className={`text-center text-white mt-4 ${stateErrorGeolocation ? "mb-2" : "mb-4" }`}>Weather Forecast</h1>  
+         { stateErrorGeolocation && <Form handleSubmit={handleSubmit} classNameForm={"col-12 mb-2"} />}    
           <div className="text-white"> 
              {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}
              <ClimaInfo data={stateErrorGeolocation? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} /> 
-          </div> 
+          </div>  
       </div>
     </div> 
  

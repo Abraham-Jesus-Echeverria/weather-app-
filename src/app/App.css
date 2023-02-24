@@ -29,5 +29,29 @@
     height: 60px;
 } 
 .height{ 
-    height: 300px;
+    height: 400px;
 }
+.bg-cards{ 
+    /* background-color: rgb(39, 60, 117, 0.5); */ 
+    background-color: rgb(0, 0, 0, 0.3) !important;
+}
+
+/* estilos slider */
+.height-slider{ 
+    height: 200px;
+}
+.z-index{ 
+    z-index: 100;
+}
+.myleft{ 
+    margin-left: 2.1rem;
+} 
+.myrigth{ 
+    margin-right: 0.5rem;
+} 
+
+.rigth0{  
+    right: 0;
+} 
+
+/* funcionamiento slider */ 

@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import ContainerInfo from "./containerInfo";
-import cityImage from "../../assets/images/city.webp"
+import cityImage from "../../assets/images/city.webp" 
+import ClimaInfo5day from "./climaInfo5days";
 
 const backgroundStyleInfo = { 
   background: `url(${cityImage})`, 
@@ -16,8 +17,8 @@ export default function ClimaInfo ({data, isLoading}) {
   }
     return(
         <>  
-        <div className="backgroundWeatherInfo row m-0">
-          <div className="col-4 bg-danger p-4" style={backgroundStyleInfo}> 
+        <div className="backgroundWeatherInfo row m-0 col-11 mx-auto mb-6">
+          <section className="col-4 bg-danger p-4" style={backgroundStyleInfo}> 
             <div className=""> 
               <p className="m-0 h2 mb-2">{isLoading? "City" : data.name}</p> 
               <p className="m-0 h5">{getDateToday()}</p>  
@@ -31,12 +32,43 @@ export default function ClimaInfo ({data, isLoading}) {
                 <p className="d-flex justify-content-center align-items-center text-capitalize m-0">{isLoading ? "description" : data.weather[0].description}</p>
               </div>
             </div> 
-          </div>  
-          <div className="col-7"> 
-            <ContainerInfo>{`humedad: ${isLoading? 0 : dataWeather.humidity}`}</ContainerInfo>
-            <ContainerInfo>{`presion: ${isLoading? 0 : dataWeather.pressure}`}</ContainerInfo>
-            <ContainerInfo>{`temperatura maxima: ${isLoading? 0 : dataWeather.temp_max}`}</ContainerInfo>
-            <ContainerInfo>{`temperatura minima: ${isLoading? 0 : dataWeather.temp_min}`}</ContainerInfo>
+          </section>  
+          <div className="col-8"> 
+          <section>
+            <div className="row"> 
+              <ContainerInfo classNameContainerInfo={"col-6"}>
+                <div className="bg-cards mt-3 py-3 mb-1 text-center rounded-3" > 
+                  <p className="h4">Humidity</p>
+                  <p className="h5">{`${isLoading? 0 : dataWeather.humidity}%`}</p> 
+                </div>
+              </ContainerInfo>
+              <ContainerInfo classNameContainerInfo={"col-6"}>
+                <div className="bg-cards mt-3 py-3 mb-1 text-center rounded-3" > 
+                  <p className="h4">Pressure</p>
+                  <p className="h5">{`${isLoading? 0 : dataWeather.pressure}mbar`}</p>
+                </div>
+              </ContainerInfo>
+            </div>
+            <div className="row mb-3"> 
+              <ContainerInfo classNameContainerInfo={"col-6"}>
+                <div className="bg-cards mt-3 py-3  text-center rounded-3">
+                  <p className="h4">Maximum temperature</p>
+                  <p className="h5">{`${isLoading? 0 : dataWeather.temp_max}°C`}</p>
+                </div>
+              </ContainerInfo>
+              <ContainerInfo classNameContainerInfo={"col-6"}>
+                <div className="bg-cards mt-3 py-3 text-center rounded-3">
+                  <p className="h4">Minimum temperature</p>
+                  <p className="h5">{`${isLoading? 0 : dataWeather.temp_min}°C`}</p>
+                </div>
+                </ContainerInfo>
+            </div>
+            </section>
+            <div className="container-fluid border border-light border-1 mb-2"></div>
+            {/* climaInfo 4 days  */}
+            <section> 
+               <ClimaInfo5day />
+            </section>
           </div>
          </div>
         </>
