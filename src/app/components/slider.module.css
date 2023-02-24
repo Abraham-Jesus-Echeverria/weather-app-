@@ -1,0 +1,8 @@
+.transition_left{ 
+    transform: translateX(0);
+    transition: transform 0.5s linear;
+}
+
+.transition_left_active{ 
+    transform: translateX(-30%);
+}

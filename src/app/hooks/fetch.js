@@ -22,7 +22,6 @@ export default function useFetch(initialState) {
         throw customeError;
       } 
       // actualizando la variable de estado para guardar los datos 
-      console.log(res.weather[0].description);
       setData(res); 
       setIsLoading(false); 
     } catch (err) {
