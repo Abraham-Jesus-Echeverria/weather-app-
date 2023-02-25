@@ -11,7 +11,7 @@ export default function Form ({handleSubmit, classNameForm}) {
                 </div> 
                 <div className="form-group mb-2 h-auto col-md-5 col-12 me-2">  
                   <label htmlFor="contry" className="form-label">Pais</label> 
-                  <input type="text"  className="form-control" id="contry" name="contryName"/>
+                  <input type="text"  className="form-control" id="contry" name="countryName"/>
                 </div>
                 <div className="h-auto col-auto d-flex align-items-end"> 
                   <button className="btn btn-danger mb-2">enviar</button>

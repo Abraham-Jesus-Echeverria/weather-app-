@@ -23,7 +23,8 @@ export default function App () {
     } 
     const getDataWeatherToday = useFetch(initialStateDataWeater);
     const getDataWeatherTodayForm = useFetch(initialStateDataWeater); 
-    const getDataWeatherlastHours = useFetch(initialStateDataWeater); 
+    const getDataWeatherNextDay = useFetch(initialStateDataWeater); 
+    const getDataWeatherNextDayForm = useFetch(initialStateDataWeater); 
 
     const {getCoordinates, stateErrorGeolocation} = useGeolocation(); 
     const refLouder = useRef(); 
@@ -36,8 +37,8 @@ export default function App () {
         await getDataWeatherToday.peticion(Url_coordLocation); 
         refLouder.current.classList.add("d-none");
         // se genera la url para obtener datos de los proximos 4 dias
-        let URL_forecastlastHours= `https://api.openweathermap.org/data/2.5/forecast?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${key.WEATHER_KEY}&units=metric`;  
-        getDataWeatherlastHours.peticion(URL_forecastlastHours);   
+        let URL_forecastNextDay= `https://api.openweathermap.org/data/2.5/forecast?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${key.WEATHER_KEY}&units=metric`;  
+        getDataWeatherNextDay.peticion(URL_forecastNextDay);   
       }catch (err){ 
         refLouder.current.classList.add("d-none"); 
       }
@@ -52,12 +53,14 @@ export default function App () {
     
     const handleSubmit = (e) => {
       e.preventDefault(); 
-      const { cityName, contryName } = e.target;  
+      const { cityName, countryName } = e.target;  
       // se genera url para obtener datos a traves del formulario.
-      let Url_form = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.value},${contryName.value}&appid=${key.WEATHER_KEY}&units=metric`;
-      getDataWeatherTodayForm.peticion(Url_form);   
+      let Url_formToday = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.value},${countryName.value}&appid=${key.WEATHER_KEY}&units=metric`;
+      getDataWeatherTodayForm.peticion(Url_formToday);   
+      let URL_formNextDay = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName.value},${countryName.value}&appid=${key.WEATHER_KEY}&units=metric`;
+      getDataWeatherNextDayForm.peticion(URL_formNextDay); 
       cityName.value = "" ; 
-      contryName.value = "" ;  
+      countryName.value = "" ;  
     }; 
 
     return(<>     
@@ -68,7 +71,7 @@ export default function App () {
          { stateErrorGeolocation && <Form handleSubmit={handleSubmit} classNameForm={"col-12 mb-2"} />}    
           <div className="text-white"> 
              {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}
-             <ClimaInfo data={stateErrorGeolocation? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} dataLastHours={getDataWeatherlastHours.data} isLoadingLastHour={getDataWeatherlastHours.isLoading} /> 
+             <ClimaInfo data={stateErrorGeolocation ? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} dataNextDay={stateErrorGeolocation? getDataWeatherNextDayForm.data : getDataWeatherNextDay.data} isLoadingNextDay={stateErrorGeolocation ? getDataWeatherNextDayForm.isLoading : getDataWeatherNextDay.isLoading} /> 
           </div>  
       </div>
     </div> 

@@ -8,7 +8,7 @@ const backgroundStyleInfo = {
   backgroundaSize: "cover",
 }
 
-export default function ClimaInfo ({data, isLoading, dataLastHours, isLoadingLastHour}) {   
+export default function ClimaInfo ({data, isLoading, dataNextDay, isLoadingNextDay}) {   
   let dataWeather = data.main;    
   
   const getDateToday = () => { 
@@ -67,7 +67,7 @@ export default function ClimaInfo ({data, isLoading, dataLastHours, isLoadingLas
             <div className="container-fluid border border-light border-1 mb-2"></div>
             {/* climaInfo 4 days  */}
             <section> 
-               <ClimaInfo5day dataLastHours={dataLastHours} isLoadingLastHour={isLoadingLastHour}/>
+               <ClimaInfo5day dataNextDay={dataNextDay} isLoadingNextDay={isLoadingNextDay}/>
             </section>
           </div>
          </div>
