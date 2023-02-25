@@ -29,7 +29,8 @@
     height: 60px;
 } 
 .height{ 
-    height: 400px;
+    height: 400px; 
+    background-color: rebeccapurple;
 }
 .bg-cards{ 
     /* background-color: rgb(39, 60, 117, 0.5); */ 

@@ -8,7 +8,7 @@ const backgroundStyleInfo = {
   backgroundaSize: "cover",
 }
 
-export default function ClimaInfo ({data, isLoading}) {   
+export default function ClimaInfo ({data, isLoading, dataLastHours, isLoadingLastHour}) {   
   let dataWeather = data.main;    
   
   const getDateToday = () => { 
@@ -18,12 +18,12 @@ export default function ClimaInfo ({data, isLoading}) {
     return(
         <>  
         <div className="backgroundWeatherInfo row m-0 col-11 mx-auto mb-6">
-          <section className="col-4 bg-danger p-4" style={backgroundStyleInfo}> 
+          <section className="col-4 p-4 d-flex flex-column justify-content-between" style={backgroundStyleInfo}> 
             <div className=""> 
               <p className="m-0 h2 mb-2">{isLoading? "City" : data.name}</p> 
               <p className="m-0 h5">{getDateToday()}</p>  
             </div> 
-            <div className="d-flex flex-column justify-content-end height">
+            <div className="d-flex flex-column justify-content-end">
               <ContainerInfo classNameContainerInfo={"h2 w-100"}>{`${isLoading? 0 : dataWeather.temp}°C`}</ContainerInfo> 
               <div className="d-flex">  
                 <div className="containerImageTemp"> 
@@ -33,7 +33,7 @@ export default function ClimaInfo ({data, isLoading}) {
               </div>
             </div> 
           </section>  
-          <div className="col-8"> 
+          <div className="col-8 pb-3"> 
           <section>
             <div className="row"> 
               <ContainerInfo classNameContainerInfo={"col-6"}>
@@ -67,7 +67,7 @@ export default function ClimaInfo ({data, isLoading}) {
             <div className="container-fluid border border-light border-1 mb-2"></div>
             {/* climaInfo 4 days  */}
             <section> 
-               <ClimaInfo5day />
+               <ClimaInfo5day dataLastHours={dataLastHours} isLoadingLastHour={isLoadingLastHour}/>
             </section>
           </div>
          </div>
