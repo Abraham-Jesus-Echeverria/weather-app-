@@ -17,28 +17,38 @@ export default function Slider ({children}) {
         refbuttonsSlider2.current.classList.add("d-none");
     }  
 
-    const evaluateContState = () =>{ 
+    // const evaluateContState = (cont, case1, case3, finalValue) =>{ 
+    //   const containerSlider = refContainerContent.current 
+    //   switch(cont){ 
+    //     case case1: 
+    //       containerSlider.style.transform = "translateX(0%)";
+    //     break
+    //     // case case2: 
+    //     //   containerSlider.style.transform = "translateX(-67%)";
+    //     // break 
+    //     case case3: 
+    //       containerSlider.style.transform = "translateX(-103%)";
+    //       setContButtonSlider(finalValue);
+    //     break
+    //   }
       
-    }
-    const handleClickLeft = () => { 
-      setContButtonSlider(contButtonSlider + 1);
-      const containerSlider = refContainerContent.current 
-      switch(contButtonSlider){ 
-        case 1: 
-          containerSlider.classList.add(styleSlider.transition_left_active1);
-        break
-        case 2: 
-          containerSlider.classList.add(styleSlider.transition_left_active2);
-        break 
-        case 3: 
-          containerSlider.classList.add(styleSlider.transition_left_active3);
-          setContButtonSlider(3);
-        break
-      }
+    // }
+    let cont = 0
+    const handleClickLeft = (e) => {  
+      cont -= 34;
+      const containerSlider = refContainerContent.current; 
+      containerSlider.style.transform = `translateX(${cont}%)`; 
+      console.log(cont); 
 
     }
     const handleClickRigth = () => { 
-        console.log("derecha"); 
+      cont += 34; 
+      const containerSlider = refContainerContent.current;
+      containerSlider.style.transform = `translateX(${cont}%)`;
+      console.log(cont)
+
+
+
     }
 
     return (<>  

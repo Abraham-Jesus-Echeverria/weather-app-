@@ -1,25 +1,4 @@
 .transition_left{ 
     transform: translateX(0);
-    transition: transform 0.5s linear;
-}
-.transition_left_active1{ 
-    transform: translateX(-34%);
-}
-.transition_left_active2{ 
-    transform: translateX(-67%);
-}
-.transition_left_active3{ 
-    transform: translateX(-103%);
-}
-
-/* transition-rigth */ 
-
-.transition_right_active1{ 
-    transform: translateX(34%);
-}
-.transition_right_active2{ 
-    transform: translateX(67%);
-}
-.transition_right_active3{ 
-    transform: translateX(103%);
+    transition: transform 0.3s linear;
 }
