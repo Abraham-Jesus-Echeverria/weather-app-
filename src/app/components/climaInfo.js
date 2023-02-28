@@ -18,7 +18,7 @@ export default function ClimaInfo ({data, isLoading, dataNextDay, isLoadingNextD
   }
     return(
         <>  
-        <div className="backgroundWeatherInfo row m-0 col-md-11 col-12 mx-auto mb-6">
+        <div className="backgroundWeatherInfo row m-0 col-lg-11 col-12 mx-auto mb-6 min-width-250 border border-white">
           <section className="col-md-4 col-12 p-md-0 p-4" style={backgroundStyleInfo}> 
           <div className="h-100 d-flex flex-column justify-content-between align-items-md-start align-items-center text-md-start text-center bg-cards p-md-4"> 
             <div> 

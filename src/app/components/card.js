@@ -17,7 +17,7 @@ export default function Card ({stylesCard, dataCard}) {
             <h5 className="h6 my-1">{dTime.date}</h5>
             <p className="title-card h6 mb-1">{dTime.time}</p>  
         </div>
-        <div className="body-card">  
+        <div className="body-card d-flex flex-column align-items-center">  
         <img src={`http://openweathermap.org/img/wn/${dataCard.weather[0].icon}@2x.png`} alt="icon_weather"/>
         <p className="mb-0"> {`${dataCard.weather[0].description}`}</p>
         <p className="mb-0">{`${dataCard.main.temp}°C`} </p>
