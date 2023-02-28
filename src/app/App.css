@@ -25,8 +25,8 @@
 }
 
 .containerImageTemp{ 
-    width: 60px; 
-    height: 60px;
+    width: 50px; 
+    height: 50px;
 } 
 .height{ 
     height: 400px; 
@@ -55,4 +55,13 @@
     right: 0;
 } 
 
+.font-size-15rem{ 
+    font-size: 1.5rem;
+}
+.font-size-2rem{ 
+    font-size: 1.5rem;
+}
+.font-size-25rem{ 
+    font-size: 2.5rem;
+}
 /* funcionamiento slider */ 

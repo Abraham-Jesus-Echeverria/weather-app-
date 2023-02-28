@@ -7,48 +7,38 @@ export default function Slider ({children}) {
     const refbuttonsSlider1 = useRef();
     const refbuttonsSlider2 = useRef();
     const refContainerContent = useRef()
-    const [contButtonSlider, setContButtonSlider] = useState(1);
+    let cont = 0; 
+    let slide = 0;
+    const containerTransform = refContainerContent.current;
     const handleMouseOver  = () => { 
         refbuttonsSlider1.current.classList.remove("d-none"); 
         refbuttonsSlider2.current.classList.remove("d-none"); 
     }
+
     const handleMouseOut = () => { 
         refbuttonsSlider1.current.classList.add("d-none"); 
         refbuttonsSlider2.current.classList.add("d-none");
     }  
+ 
+    window.addEventListener("resize", ()=>{ 
+      slide = 0; 
+      cont = 0; 
+      containerTransform.style.transform = `translateX(${slide}%)`; 
+    }); 
 
-    // const evaluateContState = (cont, case1, case3, finalValue) =>{ 
-    //   const containerSlider = refContainerContent.current 
-    //   switch(cont){ 
-    //     case case1: 
-    //       containerSlider.style.transform = "translateX(0%)";
-    //     break
-    //     // case case2: 
-    //     //   containerSlider.style.transform = "translateX(-67%)";
-    //     // break 
-    //     case case3: 
-    //       containerSlider.style.transform = "translateX(-103%)";
-    //       setContButtonSlider(finalValue);
-    //     break
-    //   }
-      
-    // }
-    let cont = 0
-    const handleClickLeft = (e) => {  
-      cont -= 34;
-      const containerSlider = refContainerContent.current; 
-      containerSlider.style.transform = `translateX(${cont}%)`; 
-      console.log(cont); 
-
+    const functionSlider = (conditional, valueSlider, valueContElse) =>{ 
+      conditional ? slide = valueSlider : cont = valueContElse 
     }
+    const handleClickLeft = (e) => { 
+      cont += 1;    
+      window.innerWidth >= 768 ? functionSlider((cont <= 3), (slide - 34), 3) : functionSlider((cont <= 3), (slide -97.2), 3); 
+      containerTransform.style.transform = `translateX(${slide}%)`
+    }
+
     const handleClickRigth = () => { 
-      cont += 34; 
-      const containerSlider = refContainerContent.current;
-      containerSlider.style.transform = `translateX(${cont}%)`;
-      console.log(cont)
-
-
-
+      cont -= 1; 
+      window.innerWidth >= 768 ? functionSlider((cont >= 0), (slide + 34), 0) : functionSlider((cont >= 0),(slide + 97.2), 0); 
+      containerTransform.style.transform = `translateX(${slide}%)`
     }
 
     return (<>  

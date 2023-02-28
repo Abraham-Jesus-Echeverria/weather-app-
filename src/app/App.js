@@ -6,14 +6,12 @@ import ClimaInfo from "./components/climaInfo";
 import useFetch from "./hooks/fetch";  
 import useGeolocation from "./hooks/GetGeolocation"; 
 import Louder from "./components/louder";  
-import BackgroundImage from "../assets/images/lluvia.jpg"
-import ClimaInfo5day from "./components/climaInfo5days";
 
 
-let styleBackground = { 
-  background: `url(${BackgroundImage})`,  
-  backgroundSize: "100% 100%" 
-}
+// let styleBackground = { 
+//   background: `url(${BackgroundImage})`,  
+//   backgroundSize: "100% 100%" 
+// }
 
 
 
@@ -64,12 +62,12 @@ export default function App () {
     }; 
 
     return(<>     
-    <div className="container-fluid p-0 backgroundStyle d-flex flex-column align-items-center h-auto" style={styleBackground}> 
-    <Louder refLouder={refLouder} classNameLouder={"louderStyles background-opacity position-absolute w-100 d-flex justify-content-center align-items-center"}/> 
-      <div className="background-opacity col-12 text-white pb-5 vh-100"> 
+    <div className="container-fluid p-0 backgroundStyle d-flex flex-column align-items-center h-auto" > 
+    <Louder refLouder={refLouder} classNameLouder={"louderStyles background-opacity position-absolute w-100 d-flex justify-content-center align-items-center position-fixed"}/> 
+      <div className={`col-12 text-white pb-5`}> 
         <h1 className={`text-center text-white mt-4 ${stateErrorGeolocation ? "mb-2" : "mb-4" }`}>Weather Forecast</h1>  
          { stateErrorGeolocation && <Form handleSubmit={handleSubmit} classNameForm={"col-12 mb-2"} />}    
-          <div className="text-white"> 
+          <div className="text-white px-2"> 
              {/* si no le damos permisos de ubicacion entonces nos enviara los datos del formulario y no de la peticion que se ejecuta en el useEfeect */}
              <ClimaInfo data={stateErrorGeolocation ? getDataWeatherTodayForm.data : getDataWeatherToday.data} isLoading={stateErrorGeolocation? getDataWeatherTodayForm.isLoading : getDataWeatherToday.isLoading} dataNextDay={stateErrorGeolocation? getDataWeatherNextDayForm.data : getDataWeatherNextDay.data} isLoadingNextDay={stateErrorGeolocation ? getDataWeatherNextDayForm.isLoading : getDataWeatherNextDay.isLoading} /> 
           </div>  

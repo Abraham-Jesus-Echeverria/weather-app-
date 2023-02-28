@@ -24,7 +24,7 @@ export default function ClimaInfo5day ({dataNextDay, isLoadingNextDay}) {
       <h2 className="text-center h4">Forecast of the next day</h2> 
       <Slider> 
         { 
-        isLoadingNextDay ?<p className="text-center">loading...</p> : dataFilter.map((data, index)=> <Card key={index} stylesCard={"col-md-3 bg-cards py-1 mx-1"} dataCard={data} />)
+        isLoadingNextDay ?<p className="text-center">loading...</p> : dataFilter.map((data, index)=> <Card key={index} stylesCard={"col-md-3 col-6 bg-cards py-1 mx-1 m-0"} dataCard={data} />)
         }
       </Slider> 
     </>);  
