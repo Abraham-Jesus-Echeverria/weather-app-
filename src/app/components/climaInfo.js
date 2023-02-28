@@ -10,7 +10,6 @@ const backgroundStyleInfo = {
 
 export default function ClimaInfo ({data, isLoading, dataNextDay, isLoadingNextDay}) {   
   let dataWeather = data.main;    
-  console.log(data); 
   
   const getDateToday = () => { 
     let date = new Date();  

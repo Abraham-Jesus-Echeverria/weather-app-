@@ -19,7 +19,7 @@ export default function useGeolocation () {
               function GeolocationError(err){  
                     reject(err); 
                     setStateErrorGeolocation(true); 
-                    alert("lo sentimos no pudimos obtener tu ubicacion intentalo de nuevo o ingresa los datos de tu ubicacion con el siguiente formulario");   
+                    alert("sorry we could not get your location try again or enter your location data with the following form");   
                 }; 
         }); 
     }; 

@@ -26,7 +26,7 @@ export default function useFetch(initialState) {
       setIsLoading(false); 
     } catch (err) {
       // acutalizando estado para crear un mensaje de error personalizado
-      alert(`${err.status || "Error!"} ${err.statusText || "lo sentimos ha ocurrido un error intentalo mas tarde"}`); 
+      alert(`${err.status || "¡Error!"} ${err.statusText || "Sorry an error occurred try again later"}`); 
       setError(true) 
       setIsLoading(true); 
     }

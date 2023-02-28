@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react"
 import Button from "./button"
 import styleSlider from "./slider.module.css" 
 
-console.log(styleSlider); 
 export default function Slider ({children}) { 
     const refbuttonsSlider1 = useRef();
     const refbuttonsSlider2 = useRef();

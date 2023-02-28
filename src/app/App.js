@@ -33,7 +33,7 @@ export default function App () {
       // esperamos la respuesta de la promesa para poder generar nuestra url y hacer la peticion 
       try{ 
         const getLocation = await getCoordinates(); 
-        let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${key.WEATHER_KEY}&units=metric`; 
+        let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${key.WEATHER_KEY}&units=metric`;
         await getDataWeatherToday.peticion(Url_coordLocation); 
         refLouder.current.classList.add("d-none");
         // se genera la url para obtener datos de los proximos 4 dias
