@@ -31,13 +31,13 @@ export default function Slider ({children}) {
     }
     const handleClickLeft = (e) => { 
       cont += 1;    
-      window.innerWidth >= 768 ? functionSlider((cont <= 3), (slide - 34), 3) : functionSlider((cont <= 3), (slide -97.2), 3); 
+      window.innerWidth >= 768 ? functionSlider((cont <= 3), (slide - 34), 3) : functionSlider((cont <= 3), (slide -97.5), 3); 
       containerTransform.style.transform = `translateX(${slide}%)`
     }
 
     const handleClickRigth = () => { 
       cont -= 1; 
-      window.innerWidth >= 768 ? functionSlider((cont >= 0), (slide + 34), 0) : functionSlider((cont >= 0),(slide + 97.2), 0); 
+      window.innerWidth >= 768 ? functionSlider((cont >= 0), (slide + 34), 0) : functionSlider((cont >= 0),(slide + 97.5), 0); 
       containerTransform.style.transform = `translateX(${slide}%)`
     }
 

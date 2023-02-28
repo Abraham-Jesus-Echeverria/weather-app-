@@ -10,6 +10,7 @@ const backgroundStyleInfo = {
 
 export default function ClimaInfo ({data, isLoading, dataNextDay, isLoadingNextDay}) {   
   let dataWeather = data.main;    
+  console.log(data); 
   
   const getDateToday = () => { 
     let date = new Date();  
@@ -56,14 +57,14 @@ export default function ClimaInfo ({data, isLoading, dataNextDay, isLoadingNextD
             <div className="row mb-3"> 
               <ContainerInfo classNameContainerInfo={"col-md-6 col-12"}>
                 <div className="bg-cards mt-3 py-3  text-center rounded-3">
-                  <p className="h4">Maximum temperature</p>
-                  <p className="h5">{`${isLoading? 0 : dataWeather.temp_max}°C`}</p>
+                  <p className="h4">Feels like</p>
+                  <p className="h5">{`${isLoading? 0 : dataWeather.feels_like}°C`}</p>
                 </div>
               </ContainerInfo>
               <ContainerInfo classNameContainerInfo={"col-md-6 col-12"}>
                 <div className="bg-cards mt-3 py-3 text-center rounded-3">
-                  <p className="h4">Minimum temperature</p>
-                  <p className="h5">{`${isLoading? 0 : dataWeather.temp_min}°C`}</p>
+                  <p className="h4">Maximum temperature</p>
+                  <p className="h5">{`${isLoading? 0 : dataWeather.temp_max}°C`}</p>
                 </div>
                 </ContainerInfo>
             </div>
