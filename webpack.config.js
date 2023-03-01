@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // variable que almacena en que modo se ejecuta el codigo segun el modulo cross-env .
 const devMode = process.env.NODE_ENV !== "production";  
+const Dotenv = require('dotenv-webpack');
 
 // lo primero que hay que hacer es especificar una entrada es decir el archivo que esta renderizando todos los componentes, luego toma todo ese codigo y lo empaqueta para luego expulsarlo ya todo minificado en un solo archivo para ello debemos especificar una salida el cual es el objeto output el path es donde le vamos a indicar donde vamos a crear una carpeta con los archivos empaquetados y cual sera el nombre de la carpeta en este caso se usa la variabel __dirname para especificar que la carpeta se va crear en la raiz del proyecto, y el parametro concatenado con el + es el nombre de la carpeta, adicionalmente establecemos el nombre del archivo js minificado que normalmente se llama bundle.js (para probar que funciona ejecuta el codigo npx webpack)
 module.exports = { 
@@ -43,12 +44,15 @@ module.exports = {
     }, 
     // lo siguiente es decirle donde va transpilar el codigo html y css, para lo cual usamos los modulos html-webpack-plugin y mini-css-extract-plugin que son clases por lo cual para poder instanciarlas hay que crear una variable para cada una, luego para el modulo de html hay que especificar en donde va insertar todo el codigo html que minifique webpack, por lo cual lo vamos a dirigir a nuestro index.html que hemos creado anteriormente y para el caso de css solo hay que especificar el nombre que tendra el archivo minificado css, que en este caso se guardara en la carpeta build con el nombre bundle.css 
     plugins: [ 
+        new Dotenv(),
+
         new HtmlWebpackPlugin ({ 
             template: "./public/index.html"
         }), 
         new MiniCssExtractPlugin ({ 
             filename: "bundle.css"
         })
+
     ]
 }  ;
 
