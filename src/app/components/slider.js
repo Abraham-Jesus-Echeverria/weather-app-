@@ -43,11 +43,11 @@ export default function Slider ({children}) {
     return (<>  
     <div className="container-fluid px-1 rounded-2 overflow-hidden" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
         <div className="row flex-nowrap position-relative"> 
-          <Button handleClick={handleClickLeft} reference={refbuttonsSlider1} className={"w-auto btn position-absolute z-index height-slider ms-2 px-1 myleft text-white d-none"}><i className="fa-solid fa-arrow-left"></i></Button>
+          <Button handleClick={handleClickRigth} reference={refbuttonsSlider1} className={"w-auto btn position-absolute z-index height-slider ms-2 px-1 myleft text-white d-none"}><i className="fa-solid fa-arrow-left"></i></Button>
             <div ref={refContainerContent} className={`row flex-nowrap transition-left ${styleSlider.transition_left}`}> 
             {children} 
             </div>
-          <Button handleClick={handleClickRigth} reference={refbuttonsSlider2} className={"w-auto btn position-absolute z-index height-slider ms-2 px-1 rigth0 myrigth text-white d-none"}><i className="fa-solid fa-arrow-right"></i></Button>
+          <Button handleClick={handleClickLeft} reference={refbuttonsSlider2} className={"w-auto btn position-absolute z-index height-slider ms-2 px-1 rigth0 myrigth text-white d-none"}><i className="fa-solid fa-arrow-right"></i></Button>
         </div>
       </div>
     </>)
