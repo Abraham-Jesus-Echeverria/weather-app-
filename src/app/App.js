@@ -7,8 +7,6 @@ import useGeolocation from "./hooks/GetGeolocation";
 import Louder from "./components/louder";  
 import BackgroundImage from "../assets/images/lluvia.webp"; 
 
-// const key = process.env.WEATHER_KEY; 
-
 let styleBackground = { 
   background: `url(${BackgroundImage})`,  
   backgroundSize: "100% 100%", 
@@ -33,11 +31,11 @@ export default function App () {
       // esperamos la respuesta de la promesa para poder generar nuestra url y hacer la peticion 
       try{ 
         const getLocation = await getCoordinates(); 
-        let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${process.env.WEATHER_KEY}&units=metric`;
+        let Url_coordLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${process.env.REACT_APP_WEATHER_KEY}&units=metric`;
         await getDataWeatherToday.peticion(Url_coordLocation); 
         refLouder.current.classList.add("d-none");
         // se genera la url para obtener datos de los proximos 4 dias
-        let URL_forecastNextDay= `https://api.openweathermap.org/data/2.5/forecast?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${process.env.WEATHER_KEY}&units=metric`;  
+        let URL_forecastNextDay= `https://api.openweathermap.org/data/2.5/forecast?lat=${getLocation.latitude}&lon=${getLocation.longitude}&lang=en&appid=${process.env.REACT_APP_WEATHER_KEY}&units=metric`;  
         getDataWeatherNextDay.peticion(URL_forecastNextDay);   
       }catch (err){ 
         refLouder.current.classList.add("d-none"); 
@@ -47,7 +45,7 @@ export default function App () {
     
     useEffect(() =>{
       getDataLocation(); 
-      console.log(process.env.WEATHER_KEY); 
+      console.log(process.env.REACT_APP_WEATHER_KEY); 
     }
     ,[]);
 
@@ -56,9 +54,9 @@ export default function App () {
       e.preventDefault(); 
       const { cityName, countryName } = e.target;  
       // se genera url para obtener datos a traves del formulario.
-      let Url_formToday = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.value},${countryName.value}&appid=${process.env.WEATHER_KEY}&units=metric`;
+      let Url_formToday = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.value},${countryName.value}&appid=${process.env.REACT_APP_WEATHER_KEY}&units=metric`;
       getDataWeatherTodayForm.peticion(Url_formToday);   
-      let URL_formNextDay = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName.value},${countryName.value}&appid=${process.env.WEATHER_KEY}&units=metric`;
+      let URL_formNextDay = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName.value},${countryName.value}&appid=${process.env.REACT_APP_WEATHER_KEY}&units=metric`;
       getDataWeatherNextDayForm.peticion(URL_formNextDay); 
       cityName.value = "" ; 
       countryName.value = "" ;  
